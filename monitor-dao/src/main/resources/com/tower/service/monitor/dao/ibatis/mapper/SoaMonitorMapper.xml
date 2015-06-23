@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.tower.service.monitor.dao.ibatis.mapper.SoaMonitorMapper">
+	<resultMap id="BaseResultMap" type="com.tower.service.monitor.dao.model.SoaMonitor">		
+		
+			<id property="id" column="id" />
+			<result property="ip" column="ip" />
+			<result property="pid" column="pid" />
+			<result property="applications" column="applications" />
+			<result property="protocols" column="protocols" />
+			<result property="interfaces" column="interfaces" />
+			<result property="methods" column="methods" />
+			<result property="params" column="params" />
+			<result property="heartbeats" column="heartbeats" />
+			<result property="requests" column="requests" />
+			<result property="performances" column="performances" />
+			<result property="updatetime" column="updatetime" />
+	</resultMap>
+	
+	<sql id="Column_List_Id_Gen">
+			id
+	</sql>
+	<sql id="Column_List_Base_Gen">
+			id,
+			ip,
+			pid,
+			applications,
+			protocols,
+			interfaces,
+			methods,
+			params,
+			heartbeats,
+			requests,
+			performances,
+			updatetime
+	</sql>
+	<sql id="Where_Clause_Id_Gen">
+		and id=#{id}
+		<include refid="Where_Clause_Id_Extend" />
+	</sql>
+	<sql id="Where_Clause_Normal_Gen">
+		<if test="id !=  null">
+			and id=#{id}
+		</if>
+		<if test="fromId !=  null">
+			and id>#{fromId}
+		</if>
+		<if test="ip !=  null">			        
+			and ip=#{ip}
+		</if>
+		<if test="pid !=  null">			        
+			and pid=#{pid}
+		</if>
+		<if test="applications !=  null">			        
+			and applications=#{applications}
+		</if>
+		<if test="protocols !=  null">			        
+			and protocols=#{protocols}
+		</if>
+		<if test="interfaces !=  null">			        
+			and interfaces=#{interfaces}
+		</if>
+		<if test="methods !=  null">			        
+			and methods=#{methods}
+		</if>
+		<if test="params !=  null">			        
+			and params=#{params}
+		</if>
+		<if test="heartbeats !=  null">			        
+			and heartbeats=#{heartbeats}
+		</if>
+		<if test="requests !=  null">			        
+			and requests=#{requests}
+		</if>
+		<if test="performances !=  null">			        
+			and performances=#{performances}
+		</if>
+		<if test="updatetime !=  null">			        
+			and updatetime=#{updatetime}
+		</if>
+		<include refid="Where_Clause_Normal_Extend" />
+	</sql>
+	<sql id="Update_Set_Normal_Gen">
+		<!--
+		<if test="id !=  null">			        
+			id=#{id},
+		</if>
+		-->
+		<if test="ip !=  null">			        
+			ip=#{ip},
+		</if>
+		<if test="pid !=  null">			        
+			pid=#{pid},
+		</if>
+		<if test="applications !=  null">			        
+			applications=#{applications},
+		</if>
+		<if test="protocols !=  null">			        
+			protocols=#{protocols},
+		</if>
+		<if test="interfaces !=  null">			        
+			interfaces=#{interfaces},
+		</if>
+		<if test="methods !=  null">			        
+			methods=#{methods},
+		</if>
+		<if test="params !=  null">			        
+			params=#{params},
+		</if>
+		<if test="heartbeats !=  null">			        
+			heartbeats=#{heartbeats},
+		</if>
+		<if test="requests !=  null">			        
+			requests=#{requests},
+		</if>
+		<if test="performances !=  null">			        
+			performances=#{performances},
+		</if>
+		<if test="updatetime !=  null">			        
+			updatetime=#{updatetime},
+		</if>
+	</sql>
+	<sql id="Update_Set_NewObj_Gen">
+		<if test="newObj.id !=  null">
+			id=#{newObj.id},
+		</if>
+		<if test="newObj.ip !=  null">
+			ip=#{newObj.ip},
+		</if>
+		<if test="newObj.pid !=  null">
+			pid=#{newObj.pid},
+		</if>
+		<if test="newObj.applications !=  null">
+			applications=#{newObj.applications},
+		</if>
+		<if test="newObj.protocols !=  null">
+			protocols=#{newObj.protocols},
+		</if>
+		<if test="newObj.interfaces !=  null">
+			interfaces=#{newObj.interfaces},
+		</if>
+		<if test="newObj.methods !=  null">
+			methods=#{newObj.methods},
+		</if>
+		<if test="newObj.params !=  null">
+			params=#{newObj.params},
+		</if>
+		<if test="newObj.heartbeats !=  null">
+			heartbeats=#{newObj.heartbeats},
+		</if>
+		<if test="newObj.requests !=  null">
+			requests=#{newObj.requests},
+		</if>
+		<if test="newObj.performances !=  null">
+			performances=#{newObj.performances},
+		</if>
+		<if test="newObj.updatetime !=  null">
+			updatetime=#{newObj.updatetime},
+		</if>
+	</sql>
+	<sql id="Where_Clause_Params_Gen">
+		<if test="params.id !=  null">
+			and id=#{params.id}
+		</if>
+		<if test="params.fromId !=  null">
+			and id>#{params.fromId}
+		</if>
+		<if test="params.ip !=  null">
+			and ip=#{params.ip}
+		</if>
+		<if test="params.pid !=  null">
+			and pid=#{params.pid}
+		</if>
+		<if test="params.applications !=  null">
+			and applications=#{params.applications}
+		</if>
+		<if test="params.protocols !=  null">
+			and protocols=#{params.protocols}
+		</if>
+		<if test="params.interfaces !=  null">
+			and interfaces=#{params.interfaces}
+		</if>
+		<if test="params.methods !=  null">
+			and methods=#{params.methods}
+		</if>
+		<if test="params.params !=  null">
+			and params=#{params.params}
+		</if>
+		<if test="params.heartbeats !=  null">
+			and heartbeats=#{params.heartbeats}
+		</if>
+		<if test="params.requests !=  null">
+			and requests=#{params.requests}
+		</if>
+		<if test="params.performances !=  null">
+			and performances=#{params.performances}
+		</if>
+		<if test="params.updatetime !=  null">
+			and updatetime=#{params.updatetime}
+		</if>
+		<include refid="Where_Clause_Params_Extend" />
+	</sql>
+	<sql id="Where_Clause_Batch_Gen">
+		<foreach collection="list" item="item" index="index">
+			<if test="index == 1">
+				<if test="item.id !=  null">
+					and id in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.id}
+					</foreach>
+				</if>
+				<if test="item.ip !=  null">
+					and ip in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.ip}
+					</foreach>
+				</if>
+				<if test="item.pid !=  null">
+					and pid in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.pid}
+					</foreach>
+				</if>
+				<if test="item.applications !=  null">
+					and applications in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.applications}
+					</foreach>
+				</if>
+				<if test="item.protocols !=  null">
+					and protocols in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.protocols}
+					</foreach>
+				</if>
+				<if test="item.interfaces !=  null">
+					and interfaces in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.interfaces}
+					</foreach>
+				</if>
+				<if test="item.methods !=  null">
+					and methods in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.methods}
+					</foreach>
+				</if>
+				<if test="item.params !=  null">
+					and params in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.params}
+					</foreach>
+				</if>
+				<if test="item.heartbeats !=  null">
+					and heartbeats in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.heartbeats}
+					</foreach>
+				</if>
+				<if test="item.requests !=  null">
+					and requests in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.requests}
+					</foreach>
+				</if>
+				<if test="item.performances !=  null">
+					and performances in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.performances}
+					</foreach>
+				</if>
+				<if test="item.updatetime !=  null">
+					and updatetime in 
+					<foreach collection="list" item="element" index="index" open= "(" close =")" separator=",">
+						#{element.updatetime}
+					</foreach>
+				</if>
+			</if>
+		</foreach>
+	</sql>
+	
+	<select id="queryById" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT
+			<include refid="Column_List_Base_Gen" />
+		FROM
+			${tKjtTabName}
+		<where>
+			<include refid="Where_Clause_Id_Gen" />
+		</where>
+		limit 1
+	</select>
+
+	<select id="queryByMap" parameterType="java.util.Map" resultMap="BaseResultMap" fetchSize="100">				
+		SELECT
+			<include refid="Column_List_Base_Gen" />
+		FROM
+			${tKjtTabName}
+		<where>
+			<include refid="Where_Clause_Normal_Gen" />
+		</where>
+		<if test="orders !=  null"> order by ${orders} </if>
+	</select>
+	
+	<select id="queryIdsByMap" parameterType="java.util.Map" resultType="java.lang.Long" fetchSize="100">				
+		SELECT
+			<include refid="Column_List_Id_Gen" />
+		FROM
+			${tKjtTabName}
+		<where>
+			<include refid="Where_Clause_Normal_Gen" />
+		</where>
+		<if test="orders !=  null"> order by ${orders} </if>
+	</select>
+	
+	<select id="countByMap" parameterType="java.util.Map" resultType="java.lang.Integer">				
+		SELECT
+			count(*)
+		FROM
+			${tKjtTabName}
+		<where>
+			<include refid="Where_Clause_Normal_Gen" />
+		</where>
+	</select>
+	
+	<select id="pageQuery" parameterType="com.tower.service.dao.Page" resultMap="BaseResultMap"  fetchSize="100">
+		SELECT
+			<include refid="Column_List_Base_Gen" />
+		FROM
+			${params.tKjtTabName}
+		<where>
+			<if test="params !=  null">
+				<include refid="Where_Clause_Params_Gen" />
+			</if>
+		</where>
+			<if test="orders !=  null"> order by ${orders} </if> limit #{start},#{end}
+	</select>
+	
+	<insert id="insert" parameterType="com.tower.service.monitor.dao.model.SoaMonitor" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO	${tKjtTabName}
+		(
+		<trim suffix="" suffixOverrides=",">
+			<if test="id !=null">
+				id,
+			</if>
+			<if test="ip !=null">
+				ip,
+			</if>
+			<if test="pid !=null">
+				pid,
+			</if>
+			<if test="applications !=null">
+				applications,
+			</if>
+			<if test="protocols !=null">
+				protocols,
+			</if>
+			<if test="interfaces !=null">
+				interfaces,
+			</if>
+			<if test="methods !=null">
+				methods,
+			</if>
+			<if test="params !=null">
+				params,
+			</if>
+			<if test="heartbeats !=null">
+				heartbeats,
+			</if>
+			<if test="requests !=null">
+				requests,
+			</if>
+			<if test="performances !=null">
+				performances,
+			</if>
+			<if test="updatetime !=null">
+				updatetime
+			</if>
+		</trim>
+		)
+		VALUES(
+		<trim suffix="" suffixOverrides=",">
+			<if test="id !=null">
+				#{id},
+			</if>
+			<if test="ip !=null">
+				#{ip},
+			</if>
+			<if test="pid !=null">
+				#{pid},
+			</if>
+			<if test="applications !=null">
+				#{applications},
+			</if>
+			<if test="protocols !=null">
+				#{protocols},
+			</if>
+			<if test="interfaces !=null">
+				#{interfaces},
+			</if>
+			<if test="methods !=null">
+				#{methods},
+			</if>
+			<if test="params !=null">
+				#{params},
+			</if>
+			<if test="heartbeats !=null">
+				#{heartbeats},
+			</if>
+			<if test="requests !=null">
+				#{requests},
+			</if>
+			<if test="performances !=null">
+				#{performances},
+			</if>
+			<if test="updatetime !=null">
+				#{updatetime}
+			</if>
+		</trim>
+		)
+	</insert>
+	
+	<update id="updateById" parameterType="java.util.Map">
+		update 
+			${tKjtTabName}
+		<set>
+			<include refid="Update_Set_Normal_Gen" />
+		</set>
+		<where>
+			<include refid="Where_Clause_Id_Gen" />
+		</where>
+	</update>
+	
+	<update id="cmplxUpdate" parameterType="java.util.Map">
+		update 
+			${tKjtTabName}
+		<set>
+			<include refid="Update_Set_NewObj_Gen" />
+		</set>
+		<where>
+			<include refid="Where_Clause_Params_Gen" />	
+		</where>
+	</update>
+	
+	<delete id="deleteByMap" parameterType="java.util.Map">		
+		DELETE
+		FROM
+			${tKjtTabName} 
+		<where>
+			<include refid="Where_Clause_Id_Gen" />
+		</where>
+	</delete>
+	
+	<insert id="batchInsert">
+		insert into 
+			${tKjtTabName}  
+			( 
+		<foreach collection="list" item="item" index="index">
+			<if test="index == 1">
+			<trim suffix="" suffixOverrides=",">
+			<if test="item.id !=null">
+				id,
+			</if>
+			<if test="item.ip !=null">
+				ip,
+			</if>
+			<if test="item.pid !=null">
+				pid,
+			</if>
+			<if test="item.applications !=null">
+				applications,
+			</if>
+			<if test="item.protocols !=null">
+				protocols,
+			</if>
+			<if test="item.interfaces !=null">
+				interfaces,
+			</if>
+			<if test="item.methods !=null">
+				methods,
+			</if>
+			<if test="item.params !=null">
+				params,
+			</if>
+			<if test="item.heartbeats !=null">
+				heartbeats,
+			</if>
+			<if test="item.requests !=null">
+				requests,
+			</if>
+			<if test="item.performances !=null">
+				performances,
+			</if>
+			<if test="item.updatetime !=null">
+				updatetime
+			</if>
+			</trim>
+			</if>
+		</foreach>
+		)  values 
+		<foreach collection="list" item="item" index="index" separator=","> 
+		(
+		<trim suffix="" suffixOverrides=",">
+			<if test="item.id !=null">
+				#{item.id},
+			</if>
+			<if test="item.ip !=null">
+				#{item.ip},
+			</if>
+			<if test="item.pid !=null">
+				#{item.pid},
+			</if>
+			<if test="item.applications !=null">
+				#{item.applications},
+			</if>
+			<if test="item.protocols !=null">
+				#{item.protocols},
+			</if>
+			<if test="item.interfaces !=null">
+				#{item.interfaces},
+			</if>
+			<if test="item.methods !=null">
+				#{item.methods},
+			</if>
+			<if test="item.params !=null">
+				#{item.params},
+			</if>
+			<if test="item.heartbeats !=null">
+				#{item.heartbeats},
+			</if>
+			<if test="item.requests !=null">
+				#{item.requests},
+			</if>
+			<if test="item.performances !=null">
+				#{item.performances},
+			</if>
+			<if test="item.updatetime !=null">
+				#{item.updatetime}
+			</if>
+		</trim>
+		)
+		</foreach>
+	</insert>
+	
+	<update id="batchUpdate" parameterType="java.util.Map">
+		update 
+			${tKjtTabName}
+		<set>
+			<include refid="Update_Set_NewObj_Gen" />
+		</set>
+		<where>
+			<include refid="Where_Clause_Batch_Gen" />
+		</where>
+	</update>
+	
+	<delete id="batchDelete"  parameterType="java.util.List">
+		delete 
+		from
+			${tKjtTabName}
+		<where>
+			<include refid="Where_Clause_Batch_Gen" />
+		</where>
+	</delete>
+	
+	<select id="batchQuery"  parameterType="java.util.List" resultMap="BaseResultMap" fetchSize="100">
+		select 
+			<include refid="Column_List_Base_Gen" />
+		from
+			${tKjtTabName}
+		<where>
+			<include refid="Where_Clause_Batch_Gen" />
+		</where>
+	</select>
+	
+	<!--所有Gen结尾的sql是公共的,其表达式都是等值判断表达式，含有Batch的是in值表达式-->
+	<sql id="Where_Clause_Id_Extend">
+		<!--id扩展表达式; eg: id字段名 between #{startId} and #{endId}-->
+	</sql>
+	<sql id="Where_Clause_Normal_Extend">
+		<!--其他字段扩展表达式; eg: id字段名 between #{startId} and #{endId}-->
+	</sql>
+	<sql id="Where_Clause_Params_Extend">
+		<!--分页&复杂更新条件字段扩展表达式; eg: id字段名 between #{params.startId} and #{params.endId}-->
+	</sql>
+	
+	<!--扩展sql从备注处开始定义，id建议以'有意义的名字'-->
+	
+</mapper>

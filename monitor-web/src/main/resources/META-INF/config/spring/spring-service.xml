@@ -15,14 +15,13 @@
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
 	default-autowire="byName">
 	
-	<context:component-scan base-package="com.tower.service" />
-	
-	<!--框架配置：该import设置请不要轻易改变-->
-	<import resource="classpath*:/META-INF/config/spring/spring-dao.xml"/>
-	<import resource="classpath*:/META-INF/config/spring/spring-rpc.xml"/>
-	<import resource="classpath*:/META-INF/config/spring/spring-mq.xml"/>
-	
 	<!--框架配置：该设置请不要轻易改变-->
+	<context:component-scan base-package="com.tower.service.web.impl,com.tower.service.monitor" />
+	<!--开启authenticationFilter及取消web.xml的DelegatingFilterProxy的备注即可集成权限控制-->
+	<!--
+	<bean id="authenticationFilter" class="com.tower.service.web.impl.AuthenticationFilter" />
+	-->
+	
 	<bean id="dubbo" class="com.tower.service.config.ConfigurationFactoryBean">
 		<property name="name" value="dubbo" />
         <property name="encoding" value="utf8" />
@@ -42,26 +41,26 @@
 		</property>
 	</bean>
 	
-	<!--dubbo服务发布配置-->
+	<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+	<dubbo:application name="tower-monitor-web"/>
 	
-	<!-- 提供方应用信息，用于计算依赖关系 -->
-	<dubbo:application name="tower-monitor-service"/>
-
-    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!-- 使用zookeeper发现服务地址 -->
     <!-- 多注册中心配置，竖号分隔表示同时连接多个不同注册中心，同一注册中心的多个集群地址用逗号分隔 -->
     <dubbo:registry id="monitorRegistry" protocol="zookeeper" address="${monitor.service.registry.address}"/>
     
-    <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="${monitor.service.protocol.dubbo.port}"/>
+    <!-- 服务消费者定义 -->
+    <dubbo:consumer timeout="${monitor.web.timeout}" init="true" check="false"/>
     
     <!-- 使用监控中心 -->
     <dubbo:monitor protocol="registry"/>
     
-    <!--服务注册信息请在该备注以下添加-->
-    
-    <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.tower.service.monitor.IMonitorService" ref="monitorService" registry="monitorRegistry"/>
-    <!-- 和本地bean一样实现服务 -->
-    <bean id="monitorService" class="com.tower.service.monitor.impl.MonitorServiceImpl"/>
-    
+    <!--服务查询定义信息请在该备注以下添加-->
+	<context:component-scan base-package="com.tower.service.monitor" />
+	
+	<!--服务查询定义信息请在该备注以下添加-->
+    <!-- 所有服务应用时必须定义registry属性 -->
+    <!--
+	<dubbo:reference id="xxxService" interface="com.tower.service.monitor.IXxxxService" registry="monitorRegistry"/>
+	-->
+	
 </beans>

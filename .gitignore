@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+.DS_Store
+>>>>>>> 新增.gitignore
 *.class
 /.idea
 *.impl
@@ -17,4 +21,7 @@ build-bootstrap.jar
 *.ear
 .metadata
 gen-dal/
+<<<<<<< HEAD
 /README.md
+=======
+>>>>>>> 新增.gitignore
